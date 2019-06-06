@@ -1,6 +1,6 @@
 package board.board.repository;
 
-import java.util.Collection;
+        import java.util.Collection;
         import java.util.Iterator;
         import java.util.List;
         import java.util.Optional;
@@ -20,7 +20,6 @@ public interface ProjectMemberRepository extends CrudRepository<ProjectMember, I
 
         @Query("SELECT pm FROM ProjectMember pm where pm.id = :id")
         List<ProjectMember> findById(@Param("id") String id);
-
 
         @Query("SELECT pm FROM ProjectMember pm where pm.id = :username and pm.projectidx = :projectidx")
         ProjectMember findByProjectidxByUsername(@Param("projectidx") int projectidx,@Param("username") String username);

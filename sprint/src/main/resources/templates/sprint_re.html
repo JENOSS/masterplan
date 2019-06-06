@@ -1,52 +1,268 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<table class="board_list">
-    <colgroup>
-        <col width="15%"/>
-        <col width="*"/>
-        <col width="15%"/>
-        <col width="20%"/>
-    </colgroup>
-    <thead>
-    <tr>
-        <th scope="col">to-do</th>
-        <th scope="col">doing</th>
-        <th scope="col">done</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="todo : ${todo}">
-        <td tr th:text="${todo.contents}"></td>
-        <td>
-    <tr th:each="doing : ${doing}">
-        <td tr th:text="${doing.contents}"></td>
-        </td>
-        <td>
-    <tr th:each="done : ${done}">
-        <td tr th:text="${done.contents}"></td>
-        </td>
-    </tr>
-    </tbody>
-</table>
 
-<tr th:each="backlog : ${backlogs}">
-    <td th:text="${backlog.contents}"></td>
-    <td>
-        <input th:name="checkBox" th:value="${backlog.backlogid}" class="checkBox" type="checkbox">
-    </td>
-</tr>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>스프린트 회고 | Master Plan</title>
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="shortcut icon" href="../../images/clip.jpg"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+    <style type="text/css">
+        je {
+            /*font-family: Segoe Script;*/
+            font-family: 'Jeju Hallasan', serif;
+            font-size: 25px;
+            color: darkslategray;
+        }
+        na {
+            font-family: "Nanum Gothic", serif;
+            font-size: 20px;
+        }
 
-<tr>
-    <td th:text="요약"></td>
-    <td colspan="2">
-        <textarea id="contents" name="contents"></textarea>
-    </td>
-</tr>
 
-<td><input type="button" name="submit" id="submit" class="btn btn-info" value="저장"/></td>
-<input type="hidden" id="sprintid" name="sprintid" th:value="${sprintid}">
-</body>
+    </style>
+</head>
+<body>
+<div class="container-scroller font">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex justify-content-center">
+            <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+                <a class="navbar-brand brand-logo" href="../../../templates/index.html"><img
+                        src="../../images/mpp.png" alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href="../../../templates/index.html"><img
+                        src="../../images/mpmp.png"
+                        alt="logo"/></a>
+                <button id="mini" class="navbar-toggler navbar-toggler align-self-center" type="button"
+                        data-toggle="minimize">
+                    <span class="mdi mdi-sort-variant"></span>
+                </button>
+            </div>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <ul class="navbar-nav mr-lg-4 w-100">
+                <li class="nav-item nav-search d-none d-lg-block w-100">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        <img src="../../images/faces/face_non.png" alt="profile"/>
+                        <span class="nav-profile-name">Louis Barnett</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item">
+                            <i class="mdi mdi-settings text-primary"></i>
+                            Settings
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="mdi mdi-logout text-primary"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="container-fluid page-body-wrapper">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav" style="position: absolute; height: auto;">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../templates/index.html">
+                        <i class="mdi mdi-home menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../templates/welcome.html">
+                        <i class="mdi mdi-emoticon-tongue menu-icon"></i>
+                        <span class="menu-title">스프린트</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../templates/storage.html">
+                        <i class="mdi mdi-cloud menu-icon"></i>
+                        <span class="menu-title">저장소</span>
+                    </a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../templates/prosect.html">
+                        <i class="mdi mdi-view-headline menu-icon"></i>
+                        <span class="menu-title">게시판</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../templates/teamchat.html">
+                        <i class="mdi mdi-wechat menu-icon"></i>
+                        <span class="menu-title">팀 채팅</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../templates/schedule.html">
+                        <i class="mdi mdi-calendar menu-icon"></i>
+                        <span class="menu-title">일정</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                       aria-controls="ui-basic">
+                        <i class="mdi mdi-circle-outline menu-icon"></i>
+                        <span class="menu-title">UI Elements</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="../../pages/ui-features/buttons.html">Buttons</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="../../pages/ui-features/typography.html">Typography</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                        <i class="mdi mdi-account menu-icon"></i>
+                        <span class="menu-title">User Pages</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="auth">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="../../../templates/login.html"> Login </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="../../../templates/register.html">
+                                Register </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="../../../templates/welcome.html">
+                                welcome </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                    <span>
+                                        <h2><div
+                                                class="mdi mdi-lightbulb-outline btn-icon-prepend font-weight-bold">&nbsp<strong>스프린트 회고</strong></div></h2>
+                                     <br>
+                                    <input type="button" name="submit" id="submit" class="btn btn-lg btn-success" value="저장" style="float: right"/>
+                                    <input type="hidden" id="sprintid" name="sprintid" th:value="${sprintid}">
+                                    </span><h5 style="float: left;">이번 스프린트는 어땠나요?</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="overflow: auto">
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body" style="height: 300px;">
+                                <na>
+                                    <div class="mdi mdi-border-color text-dark font-weight-bold" style="width: 600px;">
+                                        <span>&ensp;요약</span><br><br>
+                                        <textarea style="resize: none; width: 460px; height: 200px" id="contents" name="contents"></textarea>
+                                    </div>
+                                </na>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body" style="height: 300px;">
+                                <table class="table table-dark text-white" style="text-align: center">
+                                    <div class="text-dark font-weight-bold" style="text-align: center">
+                                        <na>Backlog</na></div>
+                                    <tbody>
+                                    <tr th:each="backlog : ${backlogs}">
+                                        <td th:text="${backlog.contents}"></td>
+                                        <td>
+                                            <input th:name="checkBox" th:value="${backlog.backlogid}"
+                                                   class="checkBox"
+                                                   type="checkbox">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body" style="height: 300px; text-align: center">
+                                <table class="table table-hover" style="float: left; width: 33%">
+                                    <thead>
+                                    <tr>
+                                        <td>
+                                            <je>To-do</je>
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="todo : ${todo}">
+                                        <td th:text="${todo.contents}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-hover" style="float: left; width: 33%">
+                                    <thead>
+                                    <tr>
+                                        <td>
+                                            <je>Doing</je>
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="doing : ${doing}">
+                                        <td th:text="${doing.contents}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-hover" style="float: left; width: 33%">
+                                    <thead>
+                                    <tr>
+                                        <td>
+                                            <je>Done</je>
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="done : ${done}">
+                                        <td th:text="${done.contents}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -82,7 +298,7 @@
                     console.log(data);
                     alert(data);
                     if(data == "스프린트 종료") {
-                        location.href = "/"
+                        location.href = "/project"
                     }
                     else {
                         location.href = "/sprint_plan/" + sprintid
@@ -96,5 +312,18 @@
         });
     });
 </script>
+
+<script src="../../vendors/base/vendor.bundle.base.js"></script>
+<script src="../../vendors/chart.js/Chart.min.js"></script>
+<script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../../js/off-canvas.js"></script>
+<script src="../../js/hoverable-collapse.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../js/dashboard.js"></script>
+<script src="../../js/data-table.js"></script>
+<script src="../../js/jquery.dataTables.js"></script>
+<script src="../../js/dataTables.bootstrap4.js"></script>
+</body>
 
 </html>

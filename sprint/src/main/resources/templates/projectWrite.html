@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>board</title>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>프로젝트 생성 | Master Plan</title>
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.min.css">-->
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.theme.min.css">-->
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.structure.min.css">-->
+    <!--        <script src="../../js/jquery-3.4.1.min.js" type="text/javascript">-->
+    <link rel="shortcut icon" href="../../images/clip.jpg"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css">
+    <!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <!--    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 </head>
-<body>
-<div class="container">
-    <h2>게시글 등록</h2>
-    <form id="frm" name="frm" method="post" action="/project/write" enctype="multipart/form-data">
-        <table class="project_detail">
-            <tr>
-                <td>프로젝트 제목</td>
-                <td><input type="text" id="title" name="title"/></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <textarea id="contents" name="contents"></textarea>
-                </td>
-            </tr>
-        </table>
-        <input type="submit" id="submit" value="프로젝트 추가" class="btn">
-    </form>
+
+<body onload="parent.resizeTo(600,400)">
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth px-0">
+            <div class="row w-100 mx-0">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                        <h2 class="mdi mdi-30px mdi-bookmark-plus-outline">&nbsp&nbsp<strong>프로젝트 생성</strong></h2>
+                        <hr><br>
+                        <form id="frm" name="frm" method="post" enctype="multipart/form-data">
+                            <input type="text" id="title" name="title" style="width: 350px; height: 43px" placeholder="   프로젝트 제목을 적어주세요">
+                            <button type="submit" class="btn btn-warning" style="margin-left: 20px;" onclick="javascript:self.close();">
+                                <span class="mdi mdi-plus" style="text-align: right; float: left;"></span>
+                            </button>
+                            <!--                            <input type="submit" id="submit" value="생성" class="btn">-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script src="../../vendors/base/vendor.bundle.base.js"></script>
+<script src="../../vendors/chart.js/Chart.min.js"></script>
+<script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../../js/off-canvas.js"></script>
+<script src="../../js/hoverable-collapse.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../js/dashboard.js"></script>
+<script src="../../js/data-table.js"></script>
+<script src="../../js/jquery.dataTables.js"></script>
+<script src="../../js/dataTables.bootstrap4.js"></script>
 </body>
+
 </html>

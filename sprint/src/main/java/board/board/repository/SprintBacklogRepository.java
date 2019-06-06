@@ -19,7 +19,7 @@ public interface SprintBacklogRepository extends JpaRepository<SprintBacklog, Lo
     @Query("SELECT spback FROM SprintBacklog spback where spback.sprintid = :sprintid and spback.isdoing ='Y'")
     List<SprintBacklog> findDoingBySprintid(@Param("sprintid") Long sprintid);
 
-    @Query("SELECT spback FROM SprintBacklog spback where spback.sprintid = :sprintid and spback.isdoing ='N' and spback.isdone ='N'")
+    @Query("SELECT spback FROM SprintBacklog spback where spback.sprintid = :sprintid and spback.isdoing = 'N' and spback.isdone ='N'")
     List<SprintBacklog> findTodoBySprintid(@Param("sprintid") Long sprintid);
 
     @Transactional

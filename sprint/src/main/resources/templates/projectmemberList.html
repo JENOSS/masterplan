@@ -1,41 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>유저리스트</title>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>프로젝트 멤버 추가 | Master Plan</title>
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.min.css">-->
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.theme.min.css">-->
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.structure.min.css">-->
+    <!--        <script src="../../js/jquery-3.4.1.min.js" type="text/javascript">-->
+    <link rel="shortcut icon" href="../../images/clip.jpg"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css">
+    <!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <!--    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        var bgImg = ['bg1', 'bg2', 'bg3', 'bg4']
+        var ran = Math.floor(bgImg.length*Math.random())
+        document.body.style.backgroundImage = 'url(/static/images/bg/'+bgImg[ran]+')';
+    </script>
 </head>
 
 <body>
+<div class="background">
+    <div class="content-wrapper" style="padding: 100px;">
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <h2 class="mdi mdi-24px mdi-account-search">&nbsp&nbsp<strong>프로젝트 멤버 추가</strong>
+                </h2>
+                <hr style="border: solid 1px #d0d0d0;">
 
-<h2>프로젝트 멤버 추가</h2>
-<table id="vets" class="table table-striped">
-
-    <thead>
-    <tr>
-        <th style="width: 150px;">아이디</th>
-        <th style="width: 200px;">이름</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <form method="get" class="m-t" role="form">
-    <tr th:each="user : ${selections}">
-        <td th:text="${user.username}"/>
-        <td th:text="${user.name}"/>
-        <td>
-            <input type="button" class="checkBtn" value="추가" />
-        </td>
-    </tr>
-        <input type="hidden" id="projectidx" name="projectidx" th:value="${projectidx}">
-    </form>
-    </tbody>
-</table>
+                <div class="card">
+                    <div class="card-body" style="height: 600px; overflow: auto;">
+                        <table id="vets" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 150px;">아이디</th>
+                                <th style="width: 200px;">이름</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <form method="get" class="m-t" role="form">
+                                <tr th:each="user : ${selections}">
+                                    <td th:text="${user.username}"/>
+                                    <td th:text="${user.name}"/>
+                                    <td>
+                                        <input type="button" class="checkBtn" value="추가"/>
+                                    </td>
+                                </tr>
+                                <input type="hidden" id="projectidx" name="projectidx" th:value="${projectidx}">
+                            </form>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-    $(".checkBtn").click(function(){
-
-
+    $(".checkBtn").click(function () {
         var checkBtn = $(this);
         var projectidx = $("#projectidx").val();
         // checkBtn.parent() : checkBtn의 부모는 <td>이다.
@@ -43,13 +76,25 @@
         var tr = checkBtn.parent().parent();
         var td = tr.children();
 
-        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+        console.log("클릭한 Row의 모든 데이터 : " + tr.text());
 
         var username = td.eq(0).text();
-        location.href = "/project/"+projectidx+"/"+username;
+        location.href = "/project/" + projectidx + "/" + username;
         // 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
     });
 </script>
 
+<script src="../../vendors/base/vendor.bundle.base.js"></script>
+<script src="../../vendors/chart.js/Chart.min.js"></script>
+<script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../../js/off-canvas.js"></script>
+<script src="../../js/hoverable-collapse.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../js/dashboard.js"></script>
+<script src="../../js/data-table.js"></script>
+<script src="../../js/jquery.dataTables.js"></script>
+<script src="../../js/dataTables.bootstrap4.js"></script>
 </body>
+
 </html>

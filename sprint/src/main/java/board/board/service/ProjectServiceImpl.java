@@ -37,8 +37,6 @@ public class ProjectServiceImpl implements   ProjectService{
         return projectMemberRepository.findById(username);
     }
 
-
-
     public List<Project> selectProjectList(List<ProjectMember> list){
             int pidx;
         List<Project> plist = new ArrayList<>();
@@ -184,6 +182,10 @@ public class ProjectServiceImpl implements   ProjectService{
         }
 
         return done;
+    }
+
+    public List<String> selectProjectMemberListbyProjectidx(int projectidx) {
+       return projectMemberRepository.findidByProjectidx(projectidx);
     }
 
 

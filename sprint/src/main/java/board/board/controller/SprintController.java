@@ -176,8 +176,9 @@ public class SprintController {
         if (sp.getLevel() < 2)
             sprintRepository.updateLevelBySprintid(sprintid,2);
 
-        List<SprintBacklog> backlogs= sprintBacklogRepository.findBySprintid(sprintid);
+        List<SprintBacklog> backlogs= sprintBacklogRepository.findTodoBySprintid(sprintid);
         mv.addObject("backlogs",backlogs);
+
         return mv;
     }
 
@@ -337,9 +338,31 @@ public class SprintController {
 
         mv.addObject("projectidx",projectidx);
         mv.addObject("username",username);
-       // mv.addObject("backlog_progress",backlog_progress);
-       // mv.addObject("backlog_doing",backlog_doing);
-       // mv.addObject("backlog_done",backlog_done);
+
+        int size=0;
+        List<SprintTodo> todolist = sprinttodoRepository.findBySprintid(sprintid);
+        List<SprintTodo> todo = new ArrayList<>();
+        List<SprintTodo> doing = new ArrayList<>();
+        List<SprintTodo> done = new ArrayList<>();
+        size = todolist.size();
+        for(int i=0;i<size;i++){
+            if((todolist.get(i).getIsdone()).equals("Y")) {
+                done.add(todolist.get(i));
+            }
+            else if((todolist.get(i).getIsdoing()).equals("Y")) { //equal
+                doing.add(todolist.get(i));
+            }
+            else {
+                todo.add(todolist.get(i));
+            }
+        }
+
+        List<SprintBacklog> backlogDoingList = sprintBacklogRepository.findDoingBySprintid(sprintid);
+
+        mv.addObject("todo",todo);
+        mv.addObject("doing",doing);
+        mv.addObject("done",done);
+        mv.addObject("backlogs",backlogDoingList);
 
 
         if (sp.getLevel() < 4)
@@ -347,7 +370,35 @@ public class SprintController {
 
         return mv;
     }
+    @RequestMapping(value = "/sprint_re/{sprintid}/save", method = RequestMethod.POST)
+    @ResponseBody
+    public String sprintre_post(@RequestBody Map<String, ArrayList> result, @PathVariable Long sprintid) throws Exception {
 
+        ArrayList<String> ary = (result.get("resultBacklogDone"));
+        ArrayList<String> ary2 = (result.get("resultText"));
 
+        int size = ary.size();
+        Long backlogid;
+        for (int i = 0; i < size; i++) {
+            backlogid = Long.parseLong(ary.get(i));
+            sprintBacklogRepository.updateDone(backlogid);
+        }
+        List<SprintTodo> todolist = sprinttodoRepository.findBySprintid(sprintid);
+        size = todolist.size();
 
+        for (int i = 0; i < size; i++) {
+            sprinttodoRepository.deleteUsingSingleQuery(sprintid);
+        }
+
+        sprintRepository.updateLevelBySprintid(sprintid, 2);
+
+        if (sprintBacklogRepository.findTodoBySprintid(sprintid).size() == 0) {
+            return "스프린트 종료";
+        }
+        else {
+            return "스프린트 계획으로 돌아갑니다.";
+        }
+    }
 }
+
+

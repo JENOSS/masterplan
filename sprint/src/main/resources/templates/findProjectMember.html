@@ -1,30 +1,76 @@
+
+<!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>유저 검색 | Master Plan</title>
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.min.css">-->
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.theme.min.css">-->
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.structure.min.css">-->
+    <!--        <script src="../../js/jquery-3.4.1.min.js" type="text/javascript">-->
+    <link rel="shortcut icon" href="../../images/clip.jpg"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css">
+    <!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <!--    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+</head>
 
 <body>
-
-<h2>유저 검색</h2>
-
-<form th:object="${user}" th:action="@{/project/{projectidx}/projectMember(projectidx=${projectidx})}" method="get"
-      class="form-horizontal" id="search-owner-form">
-    <div class="form-group">
-        <div class="control-group" id="lastNameGroup">
-            <div class="col-sm-10">
-                <input class="form-control" th:field="*{username}" size="30"
-                       maxlength="80" /> <span class="help-inline"><div
-                    th:if="${#fields.hasAnyErrors()}">
+<div class="background">
+    <div class="content-wrapper" style="padding: 100px;">
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <h2 class="mdi mdi-24px mdi-account-plus">&nbsp&nbsp<strong>유저 검색</strong></h2>
+                <hr style="border: solid 1px #d0d0d0;">
+                <div class="card">
+                    <div class="card-body" style="height: 600px; overflow: auto;">
+                        <form th:object="${user}"
+                              th:action="@{/project/{projectidx}/projectMember(projectidx=${projectidx})}"
+                              method="get"
+                              class="form-horizontal" id="search-owner-form">
+                            <div class="form-group">
+                                <div class="control-group" id="lastNameGroup">
+                                    <div class="col-sm-10" style="float: left">
+                                        <input class="form-control" th:field="*{username}" size="30"
+                                               maxlength="80" style="float: left;"/> <span class="help-inline">
+                                    <div th:if="${#fields.hasAnyErrors()}">
               <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
             </div></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-lg btn-outline-info" style="margin-left: 10px;">
+                                        <span class="mdi mdi-magnify" style="text-align: right; float: left;"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">검색 아이콘</button>
-        </div>
-    </div>
+</div>
 
-</form>
 
-<br />
+<script src="../../vendors/base/vendor.bundle.base.js"></script>
+<script src="../../vendors/chart.js/Chart.min.js"></script>
+<script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../../js/off-canvas.js"></script>
+<script src="../../js/hoverable-collapse.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../js/dashboard.js"></script>
+<script src="../../js/data-table.js"></script>
+<script src="../../js/jquery.dataTables.js"></script>
+<script src="../../js/dataTables.bootstrap4.js"></script>
 </body>
+
 </html>

@@ -22,9 +22,6 @@ public class Project {
     @Column(nullable=false)
     private String title;
 
-    @Column(nullable=false)
-    private String contents;
-
     private int year;
 
     private int month;
@@ -80,11 +77,4 @@ public class Project {
         this.title = title;
     }
 
-    public String getContents() {
-        return contents;
-    }
-
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
 }

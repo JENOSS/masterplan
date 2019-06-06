@@ -1,12 +1,9 @@
 package board.board.controller;
 
-import board.board.model.Project;
-import board.board.model.ProjectMember;
-import board.board.model.Sprint;
-import board.board.model.User;
-import board.board.repository.ProjectMemberRepository;
+import board.board.model.*;
 import board.board.repository.ProjectRepository;
 import board.board.repository.SprintRepository;
+import board.board.repository.SprintTodoRepository;
 import board.board.service.ProjectService;
 import board.board.service.SprintService;
 import board.board.service.UserService;
@@ -19,10 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.management.MalformedObjectNameException;
-import java.util.Collection;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class ProjectController {
@@ -40,11 +34,10 @@ public class ProjectController {
     private SprintRepository sprintRepository;
 
     @Autowired
-    private ProjectRepository projectRepository;
+    private SprintTodoRepository sprintTodoRepository;
 
     @Autowired
-    private ProjectMemberRepository projectMemberRepository;
-
+    private ProjectRepository projectRepository;
 
 
 
@@ -121,24 +114,34 @@ public class ProjectController {
 
         // leader progress bar
 
-        Project pr = projectRepository.findByProjectidx(projectidx);
+
+        List<String> projectMembers = projectService.selectProjectMemberListbyProjectidx(projectidx);
+        Map<String,Integer> memberprogress =  new HashMap<>();
+        Iterator<String> itr = projectMembers.iterator();
+        while (itr.hasNext()) {
+            String name = itr.next();
+            int member_done=sprintService.donebyusername(sprintid,name);
+            int member_all=sprintService.allsprinttodo(sprintid);
+            double member_temp=((double)member_done/(double)member_all)*100;
+            int member_progress=(int)member_temp;
+            memberprogress.put(name,member_progress);
+        }
 
 
-        String name = pr.getCreatorid();
 
-        int leader_done=sprintService.donebyusername(sprintid,name);
 
-        int leader_all=sprintService.allsprinttodo(sprintid);
 
-        double leader_temp=((double)leader_done/(double)leader_all)*100;
 
-        int leader_progress=(int)leader_temp;
+
+
 
 
 
 
         //start date
 
+
+        Project pr = projectRepository.findByProjectidx(projectidx);
         String leader= pr.getCreatorid();
 
         String month="Feb";
@@ -196,7 +199,8 @@ public class ProjectController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-
+        List<SprintTodo> doingList = sprintTodoRepository.findDoingBySprintid(sprintid);
+        List<SprintTodo> doneList = sprintTodoRepository.findDoneBySprintid(sprintid);
 
 
         if(check == 1) {
@@ -213,11 +217,13 @@ public class ProjectController {
             mv.addObject("startdate",stratedate);
             mv.addObject("title", title);
             mv.addObject("leader",leader);
-            mv.addObject("leader_progress",leader_progress);
+            mv.addObject("doingList",doingList);
+            mv.addObject("doneList",doneList);
+            //mv.addObject("leader_progress",leader_progress);
 
-            mv.addObject("leader_done",leader_done);
-            mv.addObject("leader_all",leader_all);
-            //여기서 projectidx로 게시판 가져오기?
+            //mv.addObject("leader_done",leader_done);
+            //mv.addObject("leader_all",leader_all);
+            mv.addObject("memberprogress",memberprogress);
             return mv;
         }
         else {
