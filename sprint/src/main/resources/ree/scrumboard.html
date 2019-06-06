@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>나는 스크럼보드임</h2>
+<h2>이곳의 sprintid는 </h2>
+<p th:text="${sprintid}"></p>
+<h2>이 sprintid의 cycle </h2>
+<p th:text="${cycle}"></p>
+<h2>이 sprintid의 실제 경과일 </h2>
+<p th:text="${pass}"></p>
+<h2>이 sprintid의 cycle과 실제 경과일간의 차이</h2>
+<p th:text="${diff}"></p>
+<div th:if="${msg}">
+    <p th:text="${msg}"></p>
+    <a class="nav-link" href="/sprint_re/"  th:attrappend="href=${sprintid}">회고로(re) 가기</a>
+</div>
+</body>
+</html>

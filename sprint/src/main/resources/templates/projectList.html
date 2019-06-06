@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>board</title>
+
+</head>
+<body>
+<div class="container">
+    <h2>프로젝트 목록</h2>
+    <table class="project_list">
+        <colgroup>
+            <col width="15%"/>
+            <col width="*"/>
+            <col width="15%"/>
+            <col width="20%"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th scope="col">프로젝트번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">설명</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
+            <td th:text="${list.projectidx}"></td>
+            <td class="title"><a href="/project/" th:attrappend="href=${list.projectidx}" th:text="${list.title}"></a></td>
+            <td th:text="${list.contents}"></td>
+        </tr>
+        <tr th:unless="${#lists.size(list)} > 0">
+            <td colspan="4">조회된 결과가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/project/write" class="btn">프로젝트 추가</a>
+</div>
+</body>
+</html>

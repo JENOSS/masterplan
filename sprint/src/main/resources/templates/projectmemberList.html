@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>유저리스트</title>
+
+</head>
+
+<body>
+
+<h2>프로젝트 멤버 추가</h2>
+<table id="vets" class="table table-striped">
+
+    <thead>
+    <tr>
+        <th style="width: 150px;">아이디</th>
+        <th style="width: 200px;">이름</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <form method="get" class="m-t" role="form">
+    <tr th:each="user : ${selections}">
+        <td th:text="${user.username}"/>
+        <td th:text="${user.name}"/>
+        <td>
+            <input type="button" class="checkBtn" value="추가" />
+        </td>
+    </tr>
+        <input type="hidden" id="projectidx" name="projectidx" th:value="${projectidx}">
+    </form>
+    </tbody>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(".checkBtn").click(function(){
+
+
+        var checkBtn = $(this);
+        var projectidx = $("#projectidx").val();
+        // checkBtn.parent() : checkBtn의 부모는 <td>이다.
+        // checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
+        var tr = checkBtn.parent().parent();
+        var td = tr.children();
+
+        console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+
+        var username = td.eq(0).text();
+        location.href = "/project/"+projectidx+"/"+username;
+        // 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+    });
+</script>
+
+</body>
+</html>

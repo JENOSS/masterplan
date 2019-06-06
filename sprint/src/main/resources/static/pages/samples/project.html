@@ -1,0 +1,207 @@
+<!--프로젝트 목록 프로젝트 생성 프로젝트 가입 프로젝트 검색-->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" http-equiv="Content-Type"
+          content="text/html, width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>프로젝트 관리 | Master Plan</title>
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="shortcut icon" href="../../images/clip.jpg"/>
+        <style type="text/css">
+                @-webkit-keyframes slideInLeft {
+                from {
+                    -webkit-transform: translate3d(-30%, 0, 0);
+                    transform: translate3d(-30%, 0, 0);
+                    visibility: visible;
+                }
+
+                to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            @keyframes slideInLeft {
+                from {
+                    -webkit-transform: translate3d(-30%, 0, 0);
+                    transform: translate3d(-30%, 0, 0);
+                    visibility: visible;
+                }
+
+                to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+                @-webkit-keyframes fadeInDown {
+                    from {
+                        opacity: 0;
+                        -webkit-transform: translate3d(0, -100%, 0);
+                        transform: translate3d(0, -100%, 0);
+                    }
+
+                    to {
+                        opacity: 1;
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                    }
+                }
+
+                @keyframes fadeInDown {
+                    from {
+                        opacity: 1;
+                        -webkit-transform: translate3d(0, -100%, 0);
+                        transform: translate3d(0, -100%, 0);
+                    }
+
+                    to {
+                        opacity: 1;
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                    }
+                }
+
+            #pu {
+            animation-duration: 2s;
+            animation-name: slideOutLeft;
+            transform: translate(-30%, 0)
+            }
+            #fa {
+                animation-duration: 2s;
+                animation-name: fadeInDown;
+            }
+        </style>
+</head>
+
+<body>
+<div class="background">
+    <div class="layer" style="background-color: rgba( 0, 0, 0, 0.5);">
+        <nav id="siteNav" class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand brand-logo" href="welcome"><img src="../../images/mpp.png" width="119"
+                                                                       height="42"
+                                                                       alt="logo"
+                                                                       style="margin-left: 20px;"></a>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                </div>
+            </div>
+        </nav>
+        <div id="pu" class="row left">
+            <div class="col grid-margin">
+                <div class="content">
+                    <div class="text-white">
+                        <span><h1>반갑습니다, <strong><em>진우</em></strong>님</h1></span>
+                        <p><h5>프로젝트를 관리하세요.</h5></p>
+                        <br>
+                    </div>
+                    <button class="btn btn-lg btn-rounded btn-outline-warning btn-icon-text" type="button"
+                            style="text-align: right">
+                        <span class="mdi mdi-note-plus btn-icon-prepend"></span>
+                        생성
+                    </button>&emsp;
+                    <button class="btn btn-lg btn-rounded btn-outline-warning btn-icon-text" type="button"
+                            style="text-align: right">
+                        <span class="mdi mdi-magnify btn-icon-prepend"></span>
+                        검색
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="fa" class="row right grid-margin" style="display: flex;">
+            <div class="col grid-margin">
+                <h3 class="mdi mdi-24px mdi-book-open-page-variant" style="color: #d0d0d0;">&ensp;내 프로젝트</h3>
+                <hr style="border: solid 1px #d0d0d0;">
+                <div class="stretch-card">
+                    <div class="card" style="overflow: auto;">
+                        <div class="card-body" style="width: 700px; height: 270px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover" style="text-align: center;">
+                                    <!--                            <thead>-->
+                                    <!--                            <tr>-->
+                                    <!--                                <th></th>-->
+                                    <!--                                <th>프로젝트명</th>-->
+                                    <!--                                <th>과목</th>-->
+                                    <!--                                <th>마감 기한</th>-->
+                                    <!--                                <th>팀원 초대</th>-->
+                                    <!--                            </tr>-->
+                                    <!--                            </thead>-->
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>스크럼 기반 팀 프로젝트 시스템 구축</td>
+<!--                                        <td>소프트웨어 프로젝트</td>-->
+<!--                                        <td>D-10</td>-->
+                                        <td>
+                                            <button class="btn btn-rounded btn-outline-info" type="button"
+                                                    style="text-align: right">
+                                                <span class="mdi mdi-account-plus"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>동전 자동 분류 저금통 설계</td>
+<!--                                        <td>창의적 공학 설계</td>-->
+<!--                                        <td>D-21</td>-->
+                                        <td>
+                                            <button class="btn btn-rounded btn-outline-info" type="button"
+                                                    style="text-align: right">
+                                                <span class="mdi mdi-account-plus"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>쀼잉쀼잉</td>
+<!--                                        <td>인공지능</td>-->
+<!--                                        <td>D-16</td>-->
+                                        <td>
+                                            <button class="btn btn-rounded btn-outline-info" type="button"
+                                                    style="text-align: right">
+                                                <span class="mdi mdi-account-plus"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>뽀잉뽀잉</td>
+                                       <td>
+                                            <button class="btn btn-rounded btn-outline-info" type="button"
+                                                    style="text-align: right">
+                                                <span class="mdi mdi-account-plus"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/vendors/base/vendor.bundle.base.js"></script>
+<script src="/static/vendors/chart.js/Chart.min.js"></script>
+<script src="/static/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="/static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/static/js/off-canvas.js"></script>
+<script src="/static/js/hoverable-collapse.js"></script>
+<script src="/static/js/template.js"></script>
+<script src="/static/js/dashboard.js"></script>
+<script src="/static/js/data-table.js"></script>
+<script src="/static/js/jquery.dataTables.js"></script>
+<script src="/static/js/dataTables.bootstrap4.js"></script>
+</body>
+
+</html>

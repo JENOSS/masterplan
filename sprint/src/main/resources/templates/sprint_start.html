@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Master Plan</title>
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/clip.jpg"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <style type="text/css">
+        #bo {
+            animation-duration: 2s;
+            animation-name: bounce;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex justify-content-center">
+            <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+                <a class="navbar-brand brand-logo" href="/project/" ><img src="/images/mpp.png" alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href="/project" ><img src="/images/logo-mini.svg"
+                                                                              alt="logo"/></a>
+
+                <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-sort-variant"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Progress</span> &emsp;&emsp;
+            <ul class="navbar-nav mr-lg-4 w-100">
+                <li class="nav-item nav-search d-none d-lg-block w-75">
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width : " th:styleappend="${backlog_progress}+'%'" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav navbar-nav-right">
+
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        <img src="/images/faces/face_non.png" alt="profile"/>
+                        <span class="nav-profile-name" th:text="${username}"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item">
+                            <i class="mdi mdi-settings text-primary"></i>
+                            Settings
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="mdi mdi-logout text-primary"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link"href="/project/"  th:attrappend="href=${projectidx}">
+                        <i class="mdi mdi-home menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/sprint/"  th:attrappend="href=${projectidx}">
+                        <i class="mdi mdi-emoticon-tongue menu-icon"></i>
+                        <span class="menu-title">스프린트</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/project/{projectidx}/board(projectidx=${projectidx})}">
+                        <i class="mdi mdi-view-headline menu-icon"></i>
+                        <span class="menu-title">게시판</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="schedule">
+                        <i class="mdi mdi-calendar menu-icon"></i>
+                        <span class="menu-title">프로젝트 관리</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="main-panel">
+            <div class="layer" style="padding: 300px; background-color: rgba( 0, 0, 0, 0.4 );">
+                <div id="bo" class="content-wrapper">
+                    <div class="row">
+                        <div class="col" style="text-align: center">
+                            <!--                            <input type="text" style="border: none; background: transparent;">-->
+                            <h5>진행중인 스프린트가 없습니다.
+                                <br>스프린트를 새로 시작하세요.</h5>
+                            <br>
+                            <a class="nav-link" href="/sprint_backlog/"  th:attrappend="href=${sprintid}">
+                            <button class="btn btn-lg btn-rounded btn-warning" type="button"
+                                    style="text-align: right" >
+                                <span class="mdi mdi-plus btn-icon-prepend"></span>
+                                시작하기
+                            </button>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/vendors/base/vendor.bundle.base.js"></script>
+<script src="/vendors/chart.js/Chart.min.js"></script>
+<script src="/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/js/off-canvas.js"></script>
+<script src="/js/hoverable-collapse.js"></script>
+<script src="/js/template.js"></script>
+<script src="/js/dashboard.js"></script>
+<script src="/js/data-table.js"></script>
+<script src="/js/jquery.dataTables.js"></script>
+<script src="/js/dataTables.bootstrap4.js"></script>
+</body>
+
+</html>

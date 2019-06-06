@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<table class="board_list">
+    <colgroup>
+        <col width="15%"/>
+        <col width="*"/>
+        <col width="15%"/>
+        <col width="20%"/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th scope="col">to-do</th>
+        <th scope="col">doing</th>
+        <th scope="col">done</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="todo : ${todo}">
+        <td tr th:text="${todo.contents}"></td>
+        <td>
+    <tr th:each="doing : ${doing}">
+        <td tr th:text="${doing.contents}"></td>
+        </td>
+        <td>
+    <tr th:each="done : ${done}">
+        <td tr th:text="${done.contents}"></td>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<tr th:each="backlog : ${backlogs}">
+    <td th:text="${backlog.contents}"></td>
+    <td>
+        <input th:name="checkBox" th:value="${backlog.backlogid}" class="checkBox" type="checkbox">
+    </td>
+</tr>
+
+<tr>
+    <td th:text="요약"></td>
+    <td colspan="2">
+        <textarea id="contents" name="contents"></textarea>
+    </td>
+</tr>
+
+<td><input type="button" name="submit" id="submit" class="btn btn-info" value="저장"/></td>
+<input type="hidden" id="sprintid" name="sprintid" th:value="${sprintid}">
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var sprintid = $("#sprintid").val();
+
+        $('#submit').click(function () {
+
+            var size = $("input[name='checkBox']:checked").length;
+            var backlogDone = new Array(size);
+            $("input[name='checkBox']:checked").each(function(i) {
+                var checkBox = $(this);
+                backlogDone[i] = checkBox.val();
+            });
+
+            var comment = $("#contents").val();
+            var textAry = [];
+            textAry.push(comment);
+            alert(comment);
+            alert(textAry);
+            var obj = {
+                resultBacklogDone:backlogDone,
+                resultText:textAry
+            }
+
+            alert(JSON.stringify(obj));
+            $.ajax({
+                url: window.location +"/save",
+                type: "POST",
+                contentType : "application/json",
+                data: JSON.stringify(obj),
+                success: function (data) {
+                    console.log(data);
+                    alert(data);
+                    if(data == "스프린트 종료") {
+                        location.href = "/"
+                    }
+                    else {
+                        location.href = "/sprint_plan/" + sprintid
+                    }
+                },
+                error: function (request, status, error) {
+                    alert(request);
+                    console.log(request);
+                }
+            });
+        });
+    });
+</script>
+
+</html>

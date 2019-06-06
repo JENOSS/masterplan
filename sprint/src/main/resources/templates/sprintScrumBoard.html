@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Master Plan</title>
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.min.css">-->
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.theme.min.css">-->
+    <!--    <link rel="stylesheet" href="../../css/jquery-ui.structure.min.css">-->
+    <!--        <script src="../../js/jquery-3.4.1.min.js" type="text/javascript">-->
+    <link rel="shortcut icon" href="../../images/clip.jpg"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css">
+    <!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+    <!--    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dr {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            cursor: pointer;
+        }
+
+        post {
+            font-family: arial, sans-serif;
+            font-size: 100%;
+            margin: 1em;
+            background: #666;
+            color: #fff;
+        }
+
+        hp {
+            font-size: 45%;
+            font-weight: normal;
+        }
+
+        uul, lli {
+            list-style: none;
+        }
+
+        uul {
+            overflow: hidden;
+            padding: 3em;
+        }
+
+        uul lli a {
+            text-decoration: none;
+            color: #000;
+            background: #ffc;
+            display: block;
+            height: 4.5em;
+            width: 4.5em;
+            padding: 0.5em;
+            -moz-box-shadow: 5px 5px 7px rgba(33, 33, 33, 1);
+            -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+            box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+            -moz-transition: -moz-transform .15s linear;
+            -o-transition: -o-transform .15s linear;
+            -webkit-transition: -webkit-transform .15s linear;
+        }
+
+        uul lli {
+            margin: 0.5em;
+            float: left;
+        }
+
+        uul lli h2 {
+            font-size: 140%;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        uul lli a {
+            -webkit-transform: rotate(-6deg);
+            -o-transform: rotate(-6deg);
+            -moz-transform: rotate(-6deg);
+            z-index: 8;
+        }
+
+        uul lli:nth-child(even) a {
+            -o-transform: rotate(4deg);
+            -webkit-transform: rotate(4deg);
+            -moz-transform: rotate(4deg);
+            position: relative;
+            top: 5px;
+            background: #cfc;
+        }
+
+        uul lli:nth-child(3n) a {
+            -o-transform: rotate(-3deg);
+            -webkit-transform: rotate(-3deg);
+            -moz-transform: rotate(-3deg);
+            position: relative;
+            top: -5px;
+            background: #ccf;
+        }
+
+        uul lli:nth-child(5n) a {
+            -o-transform: rotate(5deg);
+            -webkit-transform: rotate(5deg);
+            -moz-transform: rotate(5deg);
+            position: relative;
+            top: -10px;
+        }
+
+        uul lli a:hover, ul li a:focus {
+            box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
+            -moz-box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
+            -webkit-box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
+            -webkit-transform: scale(2.5);
+            -moz-transform: scale(2.5);
+            -o-transform: scale(2.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        ol {
+            text-align: center;
+        }
+
+        ol lli {
+            display: inline;
+            padding-right: 1em;
+        }
+
+        ol lli a {
+            color: #fff;
+        }
+    </style>
+    <style type="text/css">
+        se {
+            /*font-family: Segoe Script;*/
+            font-family: 'Jeju Hallasan', serif;
+            font-size: 35px;
+            color: darkslategray;
+        }
+
+        /*.post {*/
+        /*    !*font-family: "Nanum Pen Script", serif;*!*/
+        /*    background-color: #ffdc1c;*/
+        /*    font-size: 9px;*/
+        /*    width: 100px;*/
+        /*    height: 60px;*/
+        /*    padding: 10px 10px 10px 10px;*/
+        /*    border: 1px solid black;*/
+        /*    box-shadow: 2px 2px 2px;*/
+        /*    transition: transform .2s;*/
+        /*}*/
+
+        /*.post:hover {*/
+        /*    transform: scale(2);*/
+        /*}*/
+    </style>
+    <script>
+        jQuery.noConflict();
+        jQuery( document ).ready(function ( $ ) {
+            $("#mini").bind("click", function () {
+                $("#mini").trigger('click')
+            })
+            $(".dr").draggable({
+            })
+            $("#todo", "#doing", "#done").droppable({
+                over: function (event, ui) {
+                }
+            })
+        });
+    </script>
+
+</head>
+
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex justify-content-center">
+            <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+                <a class="navbar-brand brand-logo" href="/project/" ><img src="/images/mpp.png" alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href="/project" ><img src="/images/logo-mini.svg"
+                                                                              alt="logo"/></a>
+
+                <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-sort-variant"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Progress</span> &emsp;&emsp;
+            <ul class="navbar-nav mr-lg-4 w-100">
+                <li class="nav-item nav-search d-none d-lg-block w-75">
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width : " th:styleappend="${backlog_progress}+'%'" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav navbar-nav-right">
+
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        <img src="/images/faces/face_non.png" alt="profile"/>
+                        <span class="nav-profile-name" th:text="${username}"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item">
+                            <i class="mdi mdi-settings text-primary"></i>
+                            Settings
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="mdi mdi-logout text-primary"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link"href="/project/"  th:attrappend="href=${projectidx}">
+                        <i class="mdi mdi-home menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/sprint/"  th:attrappend="href=${projectidx}">
+                        <i class="mdi mdi-emoticon-tongue menu-icon"></i>
+                        <span class="menu-title">스프린트</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/project/{projectidx}/board(projectidx=${projectidx})}">
+                        <i class="mdi mdi-view-headline menu-icon"></i>
+                        <span class="menu-title">게시판</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="schedule">
+                        <i class="mdi mdi-calendar menu-icon"></i>
+                        <span class="menu-title">프로젝트 관리</span>
+                    </a>
+                </li>
+            </ul>
+            <input type="hidden" id="username" th:value="${username}">
+        </nav>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-12 grid-margin">
+                        <div class="card">
+                            <div class="card-body">
+                                    <span>
+                                        <h2><div
+                                                class="mdi mdi-lightbulb btn-icon-prepend font-weight-bold">&nbsp<strong>Scrum Board</strong></div></h2>
+                                        <br>
+                                        <h5><strong>스프린트 3단계, </strong>진행상황에 따라 포스트잇을 붙여주세요.</h5>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="display: flex;">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body" style="height: 600px;">
+
+                                <div id="todo" class="col-4"
+                                     style="float: left; height: 550px; border: 2px solid black; border-right: none; z-index: auto">
+                                    <br>
+                                    <div style="text-align: center">
+                                        <se>To-do</se>
+                                    </div><hr>
+
+                                    <uul th:if="${#lists.size(todo)} > 0" th:each="todo : ${todo}" name="postit">
+                                        <lli>
+                                            <a class="dr">
+                                                <hp th:text="${todo.contents}"></hp>
+                                                <input type="hidden" th:value="${todo.todoid}" />
+                                            </a>
+                                        </lli>
+                                    </uul>
+                                </div>
+                                <div id="doing" class="col-4"
+                                     style="float: left; height: 550px; border: 2px solid black; z-index: auto">
+                                    <br>
+                                    <div style="text-align: center;">
+                                        <se>Doing</se>
+                                    </div><hr>
+                                    <uul th:if="${#lists.size(doing)} > 0" th:each="doing : ${doing}" name="postit">
+                                        <lli>
+                                            <a class="dr">
+                                                <hp th:text="${doing.contents}"></hp>
+                                                <input type="hidden" th:value="${doing.todoid}" />
+                                            </a>
+                                        </lli>
+                                    </uul>
+                                </div>
+                                <div id="done" class="col-4"
+                                     style="float: left; height: 550px; border: 2px solid black; border-left: none; z-index: auto;">
+                                    <br>
+                                    <div style="text-align: center;">
+                                        <se>Done</se>
+                                    </div><hr>
+                                    <uul th:if="${#lists.size(done)} > 0" th:each="done : ${done}" name="postit">
+                                        <lli>
+                                            <a class="dr">
+                                                <hp th:text="${done.contents}"></hp>
+                                                <input type="hidden" th:value="${done.todoid}" />
+                                            </a>
+                                        </lli>
+                                    </uul>
+                                </div>
+                                <tr>
+                                    <td><input type="button" name="submit" id="submit" class="btn btn-info" value="저장"/></td>
+                                    <td><input type="button" name="submit" id="next" class="btn btn-info" value="완료"/></td>
+                                    <input type="hidden" id="sprintid" name="sprintid" th:value="${sprintid}">
+                                    <td>주기 : <p th:text="${cycle}"></p></td>
+                                </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var sprintid = $("#sprintid").val();
+        $('#submit').click(function () {
+            // $("#todo uul lli a hp").each(function (i) {
+            var array = new Array($("div.col-4 uul lli a").length);
+            var jarray = new Array();
+            $("div.col-4 uul lli a").each(function (i) {
+                //alert($(this).children("hp").offset().left + " " + $(this).children("input").val());
+                if ($(this).children("hp").offset().left < 600) {
+                    var obj = {
+                        id: $(this).children("input").val(),
+                        isdoing: "N",
+                        isdone: "N"
+                    }
+                    array[i] = obj;
+                } else if ($(this).children("hp").offset().left < 950) {
+                    var user_name = $('#username').val();
+                    var obj = {
+                        id: $(this).children("input").val(),
+                        isdoing: "Y",
+                        isdone: "N",
+                        username: user_name
+                    }
+                    array[i] = obj;
+                } else {
+                    var user_name =  $('#username').val();
+                    var obj = {
+                        id: $(this).children("input").val(),
+                        isdoing: "N",
+                        isdone: "Y",
+                        username: user_name
+                    }
+                    array[i] = obj;
+                }
+            });
+            var obj2= {
+                result:array
+            }
+
+            $.ajax({
+                url: window.location + "/save",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(obj2),
+                success: function (data) {
+                    console.log(data);
+                    alert(data);
+                    //location.href = "/sprint_re/" + sprintid
+                },
+                error: function (request, status, error) {
+                    alert(request);
+                    console.log(request);
+                }
+            });
+        });
+        $('#next').click(function () {
+            $( "#submit" ).trigger( "click" );
+            location.href = "/sprint_re/" + sprintid
+        });
+    });
+</script>
+
+<script src="../../vendors/base/vendor.bundle.base.js"></script>
+<script src="../../vendors/chart.js/Chart.min.js"></script>
+<script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="../../js/off-canvas.js"></script>
+<script src="../../js/hoverable-collapse.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../js/dashboard.js"></script>
+<script src="../../js/data-table.js"></script>
+<script src="../../js/jquery.dataTables.js"></script>
+<script src="../../js/dataTables.bootstrap4.js"></script>
+</body>
+
+</html>

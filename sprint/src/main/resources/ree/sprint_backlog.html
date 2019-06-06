@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>board</title>
+</head>
+<body>
+<div class="container">
+    <h2>게시글 등록</h2>
+    <h2>나는 backlog임</h2>
+    <h2>이곳의 스프린트 아이디는 </h2>
+    <p th:text="${sprintid}">
+    <form id="frm" name="frm" method="post" th:action="@{/sprint_backlog/{sid}(sid=${sprintid})}" enctype="multipart/form-data">
+        <table class="project_detail">
+            <tr>
+                <td colspan="2">
+                    <textarea id="contents" name="contents"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" id="submit" value="요구사항 추가" class="btn">
+    </form>
+</div>
+</body>
+</html>

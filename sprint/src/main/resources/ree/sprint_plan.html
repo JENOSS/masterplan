@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>나는 plan</h2>
+<h2>이곳의 스프린트 아이디는 </h2>
+<p th:text="${sprintid}">
+<form id="frm" name="frm" method="post" th:action="@{/sprint_plan/{sid}(sid=${sprintid})}" enctype="multipart/form-data">
+    <table class="project_detail">
+        <tr>
+            <td colspan="2">
+                <h1>내용</h1>
+                <textarea id="contents" name="contents"></textarea>
+            </td>
+            <td colspan="2">
+                <h1>주기</h1>
+                <textarea id="cycle" name="cycle"></textarea>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" id="submit" value="todo 추가" class="btn">
+</form>
+</body>
+</html>
