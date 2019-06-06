@@ -208,7 +208,7 @@
         var i = 1;
         $('#newrows').click(function () {
             i++;
-            $('#dynamic_field').append('<tr id="row' + i + '"><td><div class="mdi mdi-18px mdi-check btn-icon-prepend\"></div></td><td><input name=\'todo\' type=\'text\' onload=\"MoveFocus();\" autofocus class=\'text-white font-weight-bold\' style=\"background-color:transparent; border:0 solid black; width: 500px;\"></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row' + i + '"><td><div class="mdi mdi-18px mdi-check btn-icon-prepend\"></div></td><td><input name=\'todo\' type=\'text\' onload=\"MoveFocus();\" autofocus class=\'text-dark font-weight-bold\' style=\"background-color:transparent; border:0 solid black; width: 500px;\"></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
 
         $(document).on('click', '.btn_remove', function () {

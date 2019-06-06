@@ -218,11 +218,13 @@
                                         <thead>
                                         <tr>
                                             <th>Task</th>
+                                            <th>User</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="list : ${doingList}">
                                             <td><label class="badge badge-warning" th:text="${list.contents}"></label></td>
+                                            <td><label class="badge " th:text="${list.username}"></label></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -240,11 +242,13 @@
                                         <thead>
                                         <tr>
                                             <th>Task</th>
+                                            <th>User</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="list : ${doneList}">
                                             <td><label class="badge badge-warning" th:text="${list.contents}"></label></td>
+                                            <td><label class="badge " th:text="${list.username}"></label></td>
                                         </tr>
                                         </tbody>
                                     </table>
