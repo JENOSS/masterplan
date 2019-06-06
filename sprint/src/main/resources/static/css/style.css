@@ -21013,7 +21013,7 @@ dl li {
   position: relative;
 }
 .background {
-  background-image: url('https://source.unsplash.com/category/film/1600x900');
+  /*background-image: url('https://source.unsplash.com/category/film/1600x900');*/
   background-size: auto;
   background-clip: border-box;
   min-height:100vh;
@@ -21022,7 +21022,7 @@ dl li {
   justify-content: center;
   align-items: center;
   position: relative;
-  /*background-image: url('../../images/auth/login-bg.jpg');*/
+  /*background: url('../images/auth/bg3.jpg');*/
 }
 .layer {
   padding: 400px;
@@ -21030,11 +21030,14 @@ dl li {
   /*text-align: center;*/
   background-color: rgba( 0, 0, 0, 0.5 );
 }
-.auth .Widescreen-full-bg {
-  background: url("../images/auth/bg.jpeg");
+.Widescreen-3-bg {
+   background: url("../images/bg/bg3.jpg");
+   background-size: cover;
+ }
+.Widescreen-4-bg {
+  background: url("../images/bg/bg4.jpg");
   background-size: cover;
 }
-
 .auth .lock-profile-img {
   width: 90px;
   height: 90px;

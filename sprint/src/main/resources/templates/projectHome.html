@@ -1,3 +1,4 @@
+
 <!--프로젝트 목록 프로젝트 생성 프로젝트 가입 프로젝트 검색-->
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
@@ -19,7 +20,7 @@
             from {
                 -webkit-transform: translate3d(-30%, 0, 0);
                 transform: translate3d(-30%, 0, 0);
-                visibility: visible;
+                cm visibility: visible;
             }
 
             to {
@@ -40,6 +41,7 @@
                 transform: translate3d(0, 0, 0);
             }
         }
+
         @-webkit-keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -73,6 +75,7 @@
             animation-name: slideOutLeft;
             transform: translate(-30%, 0)
         }
+
         #fa {
             animation-duration: 2s;
             animation-name: fadeInDown;
@@ -81,11 +84,11 @@
 </head>
 
 <body>
-<div class="background">
+<div class="background Widescreen-4-bg">
     <div class="layer" style="background-color: rgba( 0, 0, 0, 0.5);">
         <nav id="siteNav" class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand brand-logo" href="welcome"><img src="/images/mpp.png" width="119"
+                <a class="navbar-brand brand-logo" href="/"><img src="/images/mpp.png" width="119"
                                                                        height="42"
                                                                        alt="logo"
                                                                        style="margin-left: 20px;"></a>
@@ -108,11 +111,6 @@
                             style="text-align: right" onclick="location.href='/project/write'">
                         <span class="mdi mdi-note-plus btn-icon-prepend"></span>
                         생성
-                    </button>&emsp;
-                    <button class="btn btn-lg btn-rounded btn-outline-warning btn-icon-text" type="button"
-                            style="text-align: right" onclick="location.href='/projectHome/findProjectMember'">
-                        <span class="mdi mdi-magnify btn-icon-prepend"></span>
-                        검색
                     </button>
                 </div>
             </div>
@@ -138,12 +136,13 @@
                                     <tbody>
                                     <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
 
-                                        <td class="title"><a href="/project/" th:attrappend="href=${list.projectidx}" th:text="${list.title}"></a></td>
+                                        <td class="title"><a href="/project/" th:attrappend="href=${list.projectidx}"
+                                                             th:text="${list.title}"></a></td>
                                         <td>
                                             <button class="btn btn-rounded btn-outline-info" type="button"
-                                                    style="text-align: right" >
+                                                    style="text-align: right">
                                                 <a th:href="@{/project/{projectidx}/findProjectMember(projectidx=${list.projectidx})}">
-                                                <span class="mdi mdi-account-plus"></span>
+                                                    <span class="mdi mdi-account-plus"></span>
                                             </button>
                                         </td>
                                     </tr>
@@ -158,18 +157,17 @@
             </div>
         </div>
     </div>
-</div>
-<script src="/static/vendors/base/vendor.bundle.base.js"></script>
-<script src="/static/vendors/chart.js/Chart.min.js"></script>
-<script src="/static/vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="/static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script src="/static/js/off-canvas.js"></script>
-<script src="/static/js/hoverable-collapse.js"></script>
-<script src="/static/js/template.js"></script>
-<script src="/static/js/dashboard.js"></script>
-<script src="/static/js/data-table.js"></script>
-<script src="/static/js/jquery.dataTables.js"></script>
-<script src="/static/js/dataTables.bootstrap4.js"></script>
+    <script src="/static/vendors/base/vendor.bundle.base.js"></script>
+    <script src="/static/vendors/chart.js/Chart.min.js"></script>
+    <script src="/static/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="/static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="/static/js/off-canvas.js"></script>
+    <script src="/static/js/hoverable-collapse.js"></script>
+    <script src="/static/js/template.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/data-table.js"></script>
+    <script src="/static/js/jquery.dataTables.js"></script>
+    <script src="/static/js/dataTables.bootstrap4.js"></script>
 </body>
 
 </html>

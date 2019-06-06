@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Master Plan</title>
-    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animate.css">
     <!--    <link rel="stylesheet" href="../../css/jquery-ui.min.css">-->
     <!--    <link rel="stylesheet" href="../../css/jquery-ui.theme.min.css">-->
     <!--    <link rel="stylesheet" href="../../css/jquery-ui.structure.min.css">-->
     <!--        <script src="../../js/jquery-3.4.1.min.js" type="text/javascript">-->
-    <link rel="shortcut icon" href="../../images/clip.jpg"/>
+    <link rel="shortcut icon" href="/images/clip.jpg"/>
     <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/jejuhallasan.css">
     <!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
@@ -118,7 +118,7 @@
             top: -10px;
         }
 
-        uul lli a:hover, ull lli a:focus {
+        uul lli a:hover, uul lli a:focus {
             box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
             -moz-box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
             -webkit-box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
@@ -147,6 +147,12 @@
             /*font-family: Segoe Script;*/
             font-family: 'Jeju Hallasan', serif;
             font-size: 35px;
+            color: darkslategray;
+        }
+
+        na{
+            font-family: "Nanum Gothic", serif;
+            font-size: 25px;
             color: darkslategray;
         }
 
@@ -279,6 +285,7 @@
                                                 class="mdi mdi-lightbulb btn-icon-prepend font-weight-bold">&nbsp<strong>Scrum Board</strong></div></h2>
                                         <br>
                                         <h5><strong>스프린트 3단계, </strong>진행상황에 따라 포스트잇을 붙여주세요.</h5>
+                                        <div style="text-align: right;"><strong><na>D-DAY : <a th:text="${diff}"></a>일</na></strong></div>
                                     </span>
                             </div>
                         </div>
@@ -339,7 +346,6 @@
                                     <td><input type="button" name="submit" id="submit" class="btn btn-info" value="저장"/></td>
                                     <td><input type="button" name="submit" id="next" class="btn btn-info" value="완료"/></td>
                                     <input type="hidden" id="sprintid" name="sprintid" th:value="${sprintid}">
-                                    <td>주기 : <p th:text="${cycle}"></p></td>
                                 </tr>
                             </div>
                         </div>
@@ -414,17 +420,17 @@
     });
 </script>
 
-<script src="../../vendors/base/vendor.bundle.base.js"></script>
-<script src="../../vendors/chart.js/Chart.min.js"></script>
-<script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
-<script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script src="../../js/off-canvas.js"></script>
-<script src="../../js/hoverable-collapse.js"></script>
-<script src="../../js/template.js"></script>
-<script src="../../js/dashboard.js"></script>
-<script src="../../js/data-table.js"></script>
-<script src="../../js/jquery.dataTables.js"></script>
-<script src="../../js/dataTables.bootstrap4.js"></script>
+<script src="/vendors/base/vendor.bundle.base.js"></script>
+<script src="/vendors/chart.js/Chart.min.js"></script>
+<script src="/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src= "/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/js/off-canvas.js"></script>
+<script src="/js/hoverable-collapse.js"></script>
+<script src="/js/template.js"></script>
+<script src="/js/dashboard.js"></script>
+<script src="/js/data-table.js"></script>
+<script src="/js/jquery.dataTables.js"></script>
+<script src="/js/dataTables.bootstrap4.js"></script>
 </body>
 
 </html>

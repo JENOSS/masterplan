@@ -283,6 +283,8 @@ public class SprintController {
         mv.addObject("todo",todo);
         mv.addObject("doing",doing);
         mv.addObject("done",done);
+
+
         return mv;
     }
 
@@ -297,12 +299,20 @@ public class SprintController {
         ArrayList<Map<String,Object>> ary = todoList.get("result");
 
 
+
+
         for(int i=0;i<ary.size();i++) {
             //SprintTodo td = new SprintTodo();
             todoId = Long.parseLong((String)ary.get(i).get("id"));
+
+            String already_existant_name = sprinttodoRepository.findusernamebytodoid(todoId);
+
             isdoing = (String)ary.get(i).get("isdoing");
             isdone = (String)ary.get(i).get("isdone");
-            username = (String)ary.get(i).get("username");
+            username = (String)ary.get(i).get("username"); //doing 이랑 done에 저장 할때 당시 로그인한 username 해당 쿼리가져와서 username이
+            //not null 이면 그 유저네임 두기
+            if(already_existant_name != null)
+                username = already_existant_name;
            // sprinttodoRepository.updateInquiry(todoId,isdoing,isdone);
            // td.setTodoid(todoId);
            // td.setIsdoing(isdoing);
@@ -310,6 +320,8 @@ public class SprintController {
             //td.setSprintid(sprintid);
             sprinttodoRepository.updateInquiry(todoId,isdoing,isdone,username);
         }
+
+
 
         return "저장 완료";
     }
@@ -328,16 +340,18 @@ public class SprintController {
 
         //전체 프로그레스바
 
-        int backlog_doing = projectService.progressBacklog_doing(projectidx);
+
+        int backlog_all = projectService.progressBacklog(projectidx);
 
         int backlog_done = projectService.progressBacklog_done(projectidx);
 
-        double temp = ((double)backlog_doing/(double)backlog_done)*100;
+        double temp = ((double)backlog_done/(double)backlog_all)*100;
 
         int backlog_progress = (int)temp; // 퍼센테이지로 표현하기 위해
 
         mv.addObject("projectidx",projectidx);
         mv.addObject("username",username);
+        mv.addObject("backlog_progress",backlog_progress);
 
         int size=0;
         List<SprintTodo> todolist = sprinttodoRepository.findBySprintid(sprintid);
