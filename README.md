@@ -16,5 +16,5 @@
 - 회원가입, 프로젝트 생성, 멤버 검색, 멤버 추가, 프로젝트 대시보드, 스프린트 진행, 스크럼보드, 게시판 기능 구현
 &nbsp;
 
-# Play Video
+# Youtube
 [![Video Label](http://img.youtube.com/vi/a8zNPYFXC1o/0.jpg)](https://www.youtube.com/watch?v=a8zNPYFXC1o)
