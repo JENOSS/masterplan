@@ -29,17 +29,18 @@ import board.board.service.BoardService;
 @Controller
 public class BoardController {
 
-    @Autowired
     private BoardService boardService;
-
-    @Autowired
     private ProjectService projectService;
-
-    @Autowired
     private SprintService sprintService;
+    private SprintRepository sprintRepository;
 
     @Autowired
-    private SprintRepository sprintRepository;
+    public BoardController(BoardService boardService, ProjectService projectService, SprintService sprintService, SprintRepository sprintRepository) {
+        this.boardService = boardService;
+        this.projectService = projectService;
+        this.sprintService = sprintService;
+        this.sprintRepository = sprintRepository;
+    }
 
     @RequestMapping(value="/project/{projectidx}/board", method=RequestMethod.GET)
     public ModelAndView openBoardList(@PathVariable("projectidx") int projectidx) throws Exception{

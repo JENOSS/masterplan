@@ -20,11 +20,14 @@ import board.common.FileUtils;
 @Service
 public class BoardServiceImpl implements BoardService {
 
-    @Autowired
     BoardRepository BoardRepository;
+    FileUtils fileUtils;
 
     @Autowired
-    FileUtils fileUtils;
+    public BoardServiceImpl(board.board.repository.BoardRepository boardRepository, FileUtils fileUtils) {
+        BoardRepository = boardRepository;
+        this.fileUtils = fileUtils;
+    }
 
     @Override
     public List<Board> selectBoardList(int projectidx) throws  Exception {

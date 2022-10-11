@@ -21,25 +21,24 @@ import java.util.*;
 @Controller
 public class ProjectController {
 
-    @Autowired
     private ProjectService projectService;
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private SprintService sprintService;
-
-    @Autowired
     private SprintRepository sprintRepository;
-
-    @Autowired
     private SprintTodoRepository sprintTodoRepository;
-
-    @Autowired
     private ProjectRepository projectRepository;
 
-
+    @Autowired
+    public ProjectController(ProjectService projectService, UserService userService, SprintService sprintService,
+                             SprintRepository sprintRepository, SprintTodoRepository sprintTodoRepository,
+                             ProjectRepository projectRepository) {
+        this.projectService = projectService;
+        this.userService = userService;
+        this.sprintService = sprintService;
+        this.sprintRepository = sprintRepository;
+        this.sprintTodoRepository = sprintTodoRepository;
+        this.projectRepository = projectRepository;
+    }
 
     @RequestMapping(value="/project", method= RequestMethod.GET)
     public ModelAndView openProjectList() throws Exception{

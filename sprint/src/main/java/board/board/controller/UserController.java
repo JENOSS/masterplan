@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
-    @Autowired
+
     private UserService userService;
-
-    @Autowired
     private SecurityService securityService;
+    private UserValidator userValidator;
 
     @Autowired
-    private UserValidator userValidator;
+    public UserController(UserService userService, SecurityService securityService, UserValidator userValidator) {
+        this.userService = userService;
+        this.securityService = securityService;
+        this.userValidator = userValidator;
+    }
 
     @GetMapping("/register")
     public String registration(Model model) {

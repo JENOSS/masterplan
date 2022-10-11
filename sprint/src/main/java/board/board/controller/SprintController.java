@@ -20,20 +20,22 @@ import java.util.*;
 @Controller
 public class SprintController {
 
-    @Autowired
     private ProjectService projectService;
-
-    @Autowired
     private SprintService sprintService;
-
-    @Autowired
     private SprintRepository sprintRepository;
-
-    @Autowired
     private SprintBacklogRepository sprintBacklogRepository;
+    private SprintTodoRepository sprinttodoRepository;
 
     @Autowired
-    private SprintTodoRepository sprinttodoRepository;
+    public SprintController(ProjectService projectService, SprintService sprintService,
+                            SprintRepository sprintRepository, SprintBacklogRepository sprintBacklogRepository,
+                            SprintTodoRepository sprinttodoRepository) {
+        this.projectService = projectService;
+        this.sprintService = sprintService;
+        this.sprintRepository = sprintRepository;
+        this.sprintBacklogRepository = sprintBacklogRepository;
+        this.sprinttodoRepository = sprinttodoRepository;
+    }
 
     @RequestMapping(value="/sprint/{projectidx}", method= RequestMethod.GET)
     public String sprint(@PathVariable int projectidx) throws Exception{

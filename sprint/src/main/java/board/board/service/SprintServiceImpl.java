@@ -17,11 +17,14 @@ import java.util.List;
 @Service
 public class SprintServiceImpl implements SprintService {
 
-    @Autowired
     SprintRepository sprintRepository;
+    SprintTodoRepository sprintTodoRepository;
 
     @Autowired
-    SprintTodoRepository sprintTodoRepository;
+    public SprintServiceImpl(SprintRepository sprintRepository, SprintTodoRepository sprintTodoRepository) {
+        this.sprintRepository = sprintRepository;
+        this.sprintTodoRepository = sprintTodoRepository;
+    }
 
     public int findSprintLevel(int pidx){
 

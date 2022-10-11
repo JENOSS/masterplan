@@ -21,17 +21,21 @@ import java.util.List;
 @Service
 public class ProjectServiceImpl implements   ProjectService{
 
-    @Autowired
     ProjectMemberRepository projectMemberRepository;
-    @Autowired
     ProjectRepository projectRepository;
-    @Autowired
     SprintRepository sprintRepository;
-    @Autowired
     SprintBacklogRepository sprintBacklogRepository;
 
+    @Autowired
+    public ProjectServiceImpl(ProjectMemberRepository projectMemberRepository, ProjectRepository projectRepository,
+                              SprintRepository sprintRepository, SprintBacklogRepository sprintBacklogRepository) {
+        this.projectMemberRepository = projectMemberRepository;
+        this.projectRepository = projectRepository;
+        this.sprintRepository = sprintRepository;
+        this.sprintBacklogRepository = sprintBacklogRepository;
+    }
 
-   public List<ProjectMember> selectProjectMemberList() {
+    public List<ProjectMember> selectProjectMemberList() {
        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        String username = authentication.getName();
         return projectMemberRepository.findById(username);
