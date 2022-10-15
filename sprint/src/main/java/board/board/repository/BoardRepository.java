@@ -20,10 +20,4 @@ public interface BoardRepository extends CrudRepository<Board, Integer> {
     List<Board> findAllByProjectidxByOrderByBoardidxDesc(@Param("projectidx") int projectidx);
     @Query("SELECT file FROM BoardFile file WHERE idx= :idx AND boardidx = :boardidx")
     BoardFile findBoardFile(@Param("idx") int idx, @Param("boardidx") int boardidx);
-/*
-    @Modifying
-    @Query(value = "INSERT INTO t_file(idx,boardidx,originalfilename) VALUES (:idx,:boardidx,:originalfilename)",nativeQuery = true)
-    @Transactional
-    void insertBoardFile(@Param("idx")int idx,@Param("boardidx")int boardidx,@Param("originalfilename")String originalfilename);
-*/
 }

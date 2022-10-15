@@ -20,7 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="t_jpa_board")
+@Table(name="board")
 @NoArgsConstructor
 @Data
 public class Board {
@@ -56,75 +56,4 @@ public class Board {
     @JoinColumn(name="boardidx")
     private Collection<BoardFile> filelist;
 
-    public int getBoardidx() {
-        return boardidx;
-    }
-
-    public void setBoardidx(int boardidx) {
-        this.boardidx = boardidx;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContents() {
-        return contents;
-    }
-
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
-    public int getHitcnt() {
-        return hitcnt;
-    }
-
-    public void setHitcnt(int hitcnt) {
-        this.hitcnt = hitcnt;
-    }
-
-    public String getCreatorid() {
-        return creatorid;
-    }
-
-    public void setCreatorid(String creatorid) {
-        this.creatorid = creatorid;
-    }
-
-    public LocalDateTime getCreateddatetime() {
-        return createddatetime;
-    }
-
-    public void setCreateddatetime(LocalDateTime createddatetime) {
-        this.createddatetime = createddatetime;
-    }
-
-    public String getUpdaterid() {
-        return updaterid;
-    }
-
-    public void setUpdaterid(String updaterid) {
-        this.updaterid = updaterid;
-    }
-
-    public LocalDateTime getUpdateddatetime() {
-        return updateddatetime;
-    }
-
-    public void setUpdateddatetime(LocalDateTime updateddatetime) {
-        this.updateddatetime = updateddatetime;
-    }
-
-    public Collection<BoardFile> getFilelist() {
-        return filelist;
-    }
-
-    public void setFilelist(Collection<BoardFile> filelist) {
-        this.filelist = filelist;
-    }
 }

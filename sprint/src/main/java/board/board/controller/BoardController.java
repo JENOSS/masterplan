@@ -31,15 +31,11 @@ public class BoardController {
 
     private BoardService boardService;
     private ProjectService projectService;
-    private SprintService sprintService;
-    private SprintRepository sprintRepository;
 
     @Autowired
-    public BoardController(BoardService boardService, ProjectService projectService, SprintService sprintService, SprintRepository sprintRepository) {
+    public BoardController(BoardService boardService, ProjectService projectService) {
         this.boardService = boardService;
         this.projectService = projectService;
-        this.sprintService = sprintService;
-        this.sprintRepository = sprintRepository;
     }
 
     @RequestMapping(value="/project/{projectidx}/board", method=RequestMethod.GET)

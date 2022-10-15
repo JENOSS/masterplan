@@ -1,7 +1,6 @@
 package board.board.controller;
 
 import board.board.model.User;
-import board.board.service.SecurityService;
 import board.board.service.UserService;
 import board.validation.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private UserService userService;
-    private SecurityService securityService;
     private UserValidator userValidator;
 
     @Autowired
-    public UserController(UserService userService, SecurityService securityService, UserValidator userValidator) {
+    public UserController(UserService userService, UserValidator userValidator) {
         this.userService = userService;
-        this.securityService = securityService;
         this.userValidator = userValidator;
     }
 
@@ -42,9 +39,6 @@ public class UserController {
         }
 
         userService.save(userForm);
-/*
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-*/
         return "redirect:/";
     }
 

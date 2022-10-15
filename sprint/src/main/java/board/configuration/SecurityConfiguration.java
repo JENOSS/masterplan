@@ -1,6 +1,6 @@
 package board.configuration;
 
-import board.board.service.UserDetailsServiceImpl;
+import board.board.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -23,8 +23,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private UserService userService;
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    public SecurityConfiguration(UserService userService){
+        this.userService = userService;
+    }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -63,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 
 

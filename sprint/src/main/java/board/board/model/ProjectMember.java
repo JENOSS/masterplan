@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name="t_projectmember")
+@Table(name="project_member")
 @NoArgsConstructor
 @Data
 public class ProjectMember {
@@ -25,27 +25,4 @@ public class ProjectMember {
     @Column(nullable=false)
     private String id;
 
-    public int getPmid() {
-        return pmid;
-    }
-
-    public void setPmid(int pmid) {
-        this.pmid = pmid;
-    }
-
-    public int getProjectidx() {
-        return projectidx;
-    }
-
-    public void setProjectidx(int projectidx) {
-        this.projectidx = projectidx;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }
