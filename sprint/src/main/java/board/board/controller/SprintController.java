@@ -301,10 +301,7 @@ public class SprintController {
         ArrayList<Map<String,Object>> ary = todoList.get("result");
 
 
-
-
         for(int i=0;i<ary.size();i++) {
-            //SprintTodo td = new SprintTodo();
             todoId = Long.parseLong((String)ary.get(i).get("id"));
 
             String already_existant_name = sprinttodoRepository.findusernamebytodoid(todoId);
@@ -313,17 +310,10 @@ public class SprintController {
             isdone = (String)ary.get(i).get("isdone");
             username = (String)ary.get(i).get("username"); //doing 이랑 done에 저장 할때 당시 로그인한 username 해당 쿼리가져와서 username이
             //not null 이면 그 유저네임 두기
-            if(already_existant_name != null)
-                username = already_existant_name;
-           // sprinttodoRepository.updateInquiry(todoId,isdoing,isdone);
-           // td.setTodoid(todoId);
-           // td.setIsdoing(isdoing);
-          //  td.setIsdoing(isdone);
-            //td.setSprintid(sprintid);
+            if(already_existant_name != null) username = already_existant_name;
+
             sprinttodoRepository.updateInquiry(todoId,isdoing,isdone,username);
         }
-
-
 
         return "저장 완료";
     }
@@ -391,7 +381,6 @@ public class SprintController {
     public String sprintre_post(@RequestBody Map<String, ArrayList> result, @PathVariable Long sprintid) throws Exception {
 
         ArrayList<String> ary = (result.get("resultBacklogDone"));
-        ArrayList<String> ary2 = (result.get("resultText"));
 
         int size = ary.size();
         Long backlogid;
@@ -410,8 +399,7 @@ public class SprintController {
 
         if (sprintBacklogRepository.findTodoBySprintid(sprintid).size() == 0) {
             return "스프린트 종료";
-        }
-        else {
+        } else {
             return "스프린트 계획으로 돌아갑니다.";
         }
     }
